@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary btn-block show-tubes-btn" (click)="showTubeStatus()">Get Tube Status</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 hidden" [ngClass]="{show: showTubes === true}">
+    <ul class="list-group" *ngFor="let tubeData of tubeData">
+      <li class="list-group-item {{ tubeData.id }}">{{ tubeData.name }} Line</li>
+      <div class="alert alert-success" *ngIf="tubeData.lineStatuses[0].statusSeverity == '10'">
+        {{ tubeData.lineStatuses[0].statusSeverityDescription }}</div>
+      <div class="alert alert-danger" *ngIf="tubeData.lineStatuses[0].statusSeverity == '20'">
+        {{ tubeData.lineStatuses[0].statusSeverityDescription }}
+        <div class="clearfix"></div>
+        <span class="reason">{{ tubeData.lineStatuses[0].reason }}</span>
+      </div>
+      <div class="alert alert-warning" *ngIf="tubeData.lineStatuses[0].statusSeverity == '5'">
+        {{ tubeData.lineStatuses[0].statusSeverityDescription }}
+        <div class="clearfix"></div>
+        <span class="reason">{{ tubeData.lineStatuses[0].reason }}</span>
+      </div>
+    </ul>
+  </div>
+</div>
